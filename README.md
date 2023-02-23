@@ -7,14 +7,14 @@ The main task of the portfolio is to extract prevalent topics from Twitter messa
 # The main Tasks as are follows:
 
 1.  Extract relevant tweets of a city or region.
-![Register](https://github.com/buhari15/portfolio-habit-tracker/blob/main/static/screenshot/Register.png)
+![Raw data](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/tweets_ng.jsonl)
 2.  Preprocess the data.
-![Register](https://github.com/buhari15/portfolio-habit-tracker/blob/main/static/screenshot/Register.png)
+![Data preprocessing](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/analysis.py)
 3.  Entity analysis for the frequently used hashtags and the most active users.
-![Most active users](https://github.com/buhari15/portfolio-habit-tracker/blob/main/static/screenshot/Register.png)
-![Most frequent hashtags](https://github.com/buhari15/portfolio-habit-tracker/blob/main/static/screenshot/Register.png)
+![Most active users](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/most_active.csv)
+![Most frequent hashtags](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/most_freq.csv)
 4.  Natural language processing techniques to extract 5 most discussed topics. In this project the LDA method is used.
-[Five most common topics](https://github.com/buhari15/portfolio-habit-tracker/blob/main/static/screenshot/Register.png)
+[Five most common topics](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/topic_modeling.py)
 
 
 ## Author
