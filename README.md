@@ -1,8 +1,8 @@
 # Nigerian tweets analysis
 
-This Portfolio is part of a degree in Data Science at IU, International University of Applied Sciences.
+This portfolio is part of a degree in Data Science at IU, International University of Applied Sciences.
 
-The main Task of the Portfolio is to extract prevalent topics from Twitter messages, in other words, topic modeling.
+The main task of the portfolio is to extract prevalent topics from Twitter messages, in other words, topic modeling.
 
 # The main Tasks as are follows:
 
