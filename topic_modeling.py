@@ -34,10 +34,8 @@ def topic_model(tf, topics_n):
 def top_five(model, vectorizer, words_top_n):
     for ix, topic in enumerate(model.components_):
         print(f"Important words in Topic {ix}:")
-        # print([vectorizer.get_feature_names_out()[i] for i in topic.argsort()[-5:]])
         print([vectorizer.get_feature_names_out()[j] for j in topic.argsort()[:-words_top_n - 1:-1]])
         print('\t')
-        # return words_topic
 
 
 if __name__ == "__main__":
@@ -47,10 +45,4 @@ if __name__ == "__main__":
     lda_model = topic_model(tf, number_topics)
     top_five(lda_model, vectorizer, 10)
 
-    # print("Tweets topics:")
-    # print("Document 0: ")
-    # for i, topic in enumerate(tf[0]):
-    #     print("Topic ", i, ": ", topic * 100, "%")
-    # # for t, topics in enumerate(tf):
-    #     print("Topic", t, ":", "{}".format(topics*100, "%"))
-    # #     # print("Topic", t, ":", "{:-.3}".format(topics * 100, "%"))
+
