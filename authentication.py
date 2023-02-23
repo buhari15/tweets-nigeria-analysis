@@ -7,7 +7,7 @@ from tweepy import OAuthHandler, Client, OAuth2AppHandler, OAuth2BearerHandler
 
 def twitter_auth_v1():
     """"
-    With this function, we authenticate our credential to connect to Twitter API using the version
+    With this function, we authenticate our credential to connect to Twitter API using the version 1
     authentication API
 
     Return: The object of tweepy.OAuthHandler
@@ -28,7 +28,7 @@ def twitter_auth_v1():
 def twitter_auth_v2():
     """"
         With this function, we authenticate our credential to connect to Twitter API
-        using the version authentication API
+        using the version 2 authentication API
 
         Return: The object of tweepy client
         """
