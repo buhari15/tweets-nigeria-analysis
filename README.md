@@ -22,10 +22,10 @@ The main task of the portfolio is to extract prevalent topics from Twitter messa
 [Five most common topics](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/topic_modeling.py)
 
 6.  LDA output. 
-[Five most common topics](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/topic_modeling.py)
+[Five most common topics]()
 
 7.  LSA output. 
-[Five most common topics](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/topic_modeling.py)
+[Five most common topics]()
 
 
 ## Author
