@@ -13,7 +13,6 @@ from collections import Counter
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from spacy.lang.en import English
 from nltk.stem.wordnet import WordNetLemmatizer
 
 stop_words_en = nltk.corpus.stopwords.words('english')
@@ -62,17 +61,18 @@ def preprocessing_data(tweets):
     """
     lemma = WordNetLemmatizer()
     df = pd.read_json(tweets, lines=True)
-    tweets = df['text'].astype(str).str.lower()
-    remove_stop_w = [stw for stw in tweets if stw not in stop_words_en]
-    remove_url = remove_urls(str(remove_stop_w))
+    tweets = df['text']
+    tweets_list = tweets.values.tolist()
+    remove_url = remove_urls(str(tweets_list))
     remove_has = remove_hashtags(str(remove_url))
     remove_s_m = remove_user_mentions(remove_has)
-    data = clean(remove_s_m, no_emoji=True, no_line_breaks=True, no_punct=True,
+    remove_s_character = re.sub('[+++= ]', ' ', remove_s_m)
+    data = clean(remove_s_character, fix_unicode=True, to_ascii=True, lower=True, no_numbers=True, replace_with_number="",
+                 no_emoji=True, no_line_breaks=True, no_punct=True, no_digits=True, replace_with_digit="",
                  no_phone_numbers=True, replace_with_phone_number="")
-
-    clean_data = "".join(lemma.lemmatize(text, pos='v') for text in data)
-
-    return clean_data
+    token = word_tokenize(data)
+    processed_data = ' '.join([lemma.lemmatize(text, pos='v') for text in token if text not in stop_words_en])
+    return processed_data
 
 
 def hashtags_entities(filename):
@@ -120,9 +120,10 @@ if __name__ == "__main__":
     # tweet_data = hashtags_entities(base + '/tweets_ng.jsonl')
     # user_active = most_active_users(base + '/tweets_ng.jsonl')
     tweets_d = preprocessing_data(base + '/tweets_ng.jsonl')
-    print(tweets_d)
-    print(len(tweets_d))
 
-    with open('text_tokens.csv', 'w') as w:
+    print(tweets_d)
+    # print(len(tweets_d))
+
+    with open('text_tokens_updated.csv', 'w') as w:
         write = w.write(str(tweets_d))
         print('data saved', write)
