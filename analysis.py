@@ -14,72 +14,71 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from nltk.stem.wordnet import WordNetLemmatizer
+import spacy
 
+english_s = spacy.load('en_core_web_sm')
+spacy_stop = english_s.Defaults.stop_words
 stop_words_en = nltk.corpus.stopwords.words('english')
 base = os.path.dirname(os.path.abspath(__file__))
 
 
-def remove_hashtags(tweets):
+def remove_hashtags(filename):
     """
     This function remove hashtags from tweets.
-    :param tweets:
+    :param filename:
     :return: tweets without hashtags
     """
-    hashtags = re.sub('#[A-Za-z0-9_]+', '', tweets)
+    hashtags = re.sub('#[A-Za-z0-9_]+', '', filename)
     return hashtags
 
 
-def remove_urls(tweets):
+def remove_urls(filename):
     """
     This function remove urls from tweets.
-    :param tweets:
+    :param filename:
     :return: tweets without any urls.
     """
-    urls_remove = re.sub(r"http\S+", '', tweets)
+    urls_remove = re.sub(r"http\S+", '', filename)
     return urls_remove
 
 
-def remove_user_mentions(tweets):
+def remove_user_mentions(filename):
     """
     This function remove any user mentioned in tweets
-    :param tweets:
+    :param filename:
     :return: tweets without any user mentions.
     """
-    user_m_remove = re.sub('@[A-Za-z0-9_]+', '', tweets)
+    user_m_remove = re.sub('@[A-Za-z0-9_]+', '', filename)
     return user_m_remove
 
 
-def preprocessing_data(tweets):
+def preprocessing_data(filename):
     """
     This function takes the filename/path as argument.
-    The file is then read with pandas json module
-    With the pandas text are extracted.
-    The function also do basic preprocessing, it removed.
-    The most frequent hashtags are counted and save to a csv file.
-    :param tweets:
+    The file is then read with pandas json module.
+    With the pandas library text are extracted.
+    The function also do basic preprocessing
+    :param filename:
     :return: clean processed data.
     """
-    lemma = WordNetLemmatizer()
-    df = pd.read_json(tweets, lines=True)
-    tweets = df['text']
-    tweets_list = tweets.values.tolist()
-    remove_url = remove_urls(str(tweets_list))
+    remove_url = remove_urls(str(filename))
     remove_has = remove_hashtags(str(remove_url))
     remove_s_m = remove_user_mentions(remove_has)
-    remove_s_character = re.sub('[+++= ]', ' ', remove_s_m)
-    data = clean(remove_s_character, fix_unicode=True, to_ascii=True, lower=True, no_numbers=True, replace_with_number="",
+    data = clean(remove_s_m, fix_unicode=True, to_ascii=True, lower=True, no_numbers=True, replace_with_number="",
                  no_emoji=True, no_line_breaks=True, no_punct=True, no_digits=True, replace_with_digit="",
                  no_phone_numbers=True, replace_with_phone_number="")
-    token = word_tokenize(data)
-    processed_data = ' '.join([lemma.lemmatize(text, pos='v') for text in token if text not in stop_words_en])
+    remove_s_word = ' '.join([text for text in data.split() if text not in spacy_stop and len(text) > 3])
+    lemma = english_s(remove_s_word)
+    processed_data = " ".join([token.lemma_ for token in lemma])
+
     return processed_data
 
 
 def hashtags_entities(filename):
     """
     This function takes the filename/path as argument.
-    The file is then read with pandas json module
-    With the pandas entities are extracted, then normalized.
+    The file is then read with pandas json module.
+    With the pandas library entities are extracted, then normalized.
     The most frequent hashtags are counted and save to a csv file.
     :param filename:
     :return: most frequent hashtags.
@@ -116,14 +115,6 @@ def most_active_users(filename):
     return most_active
 
 
-if __name__ == "__main__":
-    # tweet_data = hashtags_entities(base + '/tweets_ng.jsonl')
-    # user_active = most_active_users(base + '/tweets_ng.jsonl')
-    tweets_d = preprocessing_data(base + '/tweets_ng.jsonl')
 
-    print(tweets_d)
-    # print(len(tweets_d))
 
-    with open('text_tokens_updated.csv', 'w') as w:
-        write = w.write(str(tweets_d))
-        print('data saved', write)
+
