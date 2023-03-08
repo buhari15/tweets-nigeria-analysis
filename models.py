@@ -37,7 +37,7 @@ def tfidf_vectorizer(tweets):
     :param tweets:
     :return: vectorized text
     """
-    tfidf_vect = TfidfVectorizer(stop_words=stop_words_en, use_idf=True, max_features=2000,  smooth_idf=True,  ngram_range=(2, 3))
+    tfidf_vect = TfidfVectorizer(stop_words=stop_words_en, use_idf=True, max_features=1000,  smooth_idf=True,  ngram_range=(2, 3))
     data = tfidf_vect.fit_transform(tweets)
 
     return tfidf_vect, data
