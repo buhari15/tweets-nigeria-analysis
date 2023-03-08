@@ -19,13 +19,13 @@ The main task of the portfolio is to extract prevalent topics from Twitter messa
 ![Most active users](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/10_most_active_users.png)
 
 5.  LDA with TFIDF output. 
-[Five most common topics]()
+[Common topics LDA with TFIDF](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/tfidf_lda_topics.csv)
 
 6.  LDA with CountVectorizer output. 
-[Five most common topics](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/cvect_lda_topics.csv)
+[Common topics LDA with CountVectorizer](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/cvect_lda_topics.csv)
 
 7.  LSA with CountVectorizer. 
-[Five most common topics](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/tfidf_lda_topics.csv)
+[Common topics LSA with CountVectorizer]([https://github.com/buhari15/tweets-nigeria-analysis/blob/main/tfidf_lda_topics.csv](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/tfidf_lsa_topics.csv)
 
 
 ## Author
