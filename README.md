@@ -13,10 +13,10 @@ The main task of the portfolio is to extract prevalent topics from Twitter messa
 ![Data preprocessing](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/analysis.py)
 
 3.  The 10 most frequently used hashtags.
-![Most frequent hashtags](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/10%20Most%20frequent%20hashtags.png)
+![Most frequent hashtags](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/10_Most_frequent_hashtags.png)
 
 4. The 10 most active users.
-![Most active users](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/10%20Most%20active%20users.png)
+![Most active users](https://github.com/buhari15/tweets-nigeria-analysis/blob/main/10_most_active_users.png)
 
 5.  LDA with TFIDF output. 
 [Five most common topics]()
